@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            min-width: 100px;
+            max-width: 400px;
+            min-height: 100px;
+            max-height: 300px;
+            padding: 20px;
+            margin: 20px;
+            border: 3px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">outer
+        <div id="middle">middle
+            <div id="inner">inner</div>
+        </div>
+    </div> 
+
+    <script>
+        const outer = document.getElementById('outer');
+        const middle = document.getElementById('middle');
+        const inner = document.getElementById('inner')
+
+        //capturing phase (true) 
+        //1.start from outermost ancestor and move towards the target element 
+       //2 .true parameter in eventListner indicate  capturing phase
+
+        // outer.addEventListener('click',()=> console.log("outer") ,true)
+        // middle.addEventListener('click',()=> console.log("middle"),true)
+        // inner.addEventListener('click',()=> console.log("inner"),true)
+
+        //bubbling phase
+        //1. start from target and move towards outermost ancestor
+        //2.false in eventListners (default : false )
+
+        outer.addEventListener('click',()=> console.log("outer") ,false)
+        middle.addEventListener('click',()=> console.log("middle"),false)
+        inner.addEventListener('click',(event)=> {
+            console.log("inner");
+         event.stopPropagation(); // stop propagation 
+    },false)
+
+    </script>
+</body>
+</html>
+
+<!-- // event -any occurance that can be detect and responded by program 
+// event propagation- its describes the flow of events through ther dom hierararchy in web page -->

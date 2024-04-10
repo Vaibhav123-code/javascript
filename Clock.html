@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <style>
+        body{
+            background-color: black;
+        }
+      .clock{
+        position: absolute;
+        top: 40%;
+        left: 30%;
+        color: #17D4fe;
+        font-size: 60px;
+        font-family: 'Orbitron', sans-serif;
+        letter-spacing: 6px;
+      }
+    </style>
+</head>
+<body>
+    <div id="myClockDisplay" class="clock"></div>
+    <script>
+      function showTime() {
+        let date = new Date();
+        let hour = date.getHours();  // 0-23
+        let minute = date.getMinutes();
+        let second = date.getSeconds();
+        // conver to 12 hour formate
+        let session = "AM"
+        if ( hour === 0){
+            hour = 12;
+        }
+        if( hour > 12){
+            hour = hour -12;
+            session= "PM" 
+        }
+       hour = String(hour).padStart(2,'0') ;
+       minute = String(minute).padStart(2,'0');
+       second = String(second).padStart(2,'0');  
+       
+       let time = hour + ":" + minute + ":" + second + " "+session;
+
+       document.getElementById("myClockDisplay").textContent = time;
+        setInterval(showTime,1000)
+      }
+     showTime();
+    </script>
+</body>
+</html>
